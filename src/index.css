@@ -1,0 +1,718 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --zepto-purple: #350f52;
+  --zepto-magenta: #e11a53;
+  --zepto-yellow: #ffce00;
+  --bg-dark: #090310;
+  --bg-darker: #05010a;
+  
+  --text-white: #ffffff;
+  --text-muted: #b0a8ba;
+  
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-glow-magenta: rgba(225, 26, 83, 0.2);
+  --glass-glow-purple: rgba(107, 36, 179, 0.2);
+
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  
+  font-family: var(--font-sans);
+  color-scheme: dark;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  font-family: var(--font-sans);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-dark);
+}
+
+/* Background Gradients & Glows */
+.bg-glow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, var(--glass-glow-purple) 0%, transparent 70%);
+  filter: blur(100px);
+  animation: floatGlow 15s ease-in-out infinite alternate;
+}
+
+.bg-glow-2 {
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, var(--glass-glow-magenta) 0%, transparent 70%);
+  filter: blur(120px);
+  animation: floatGlow 20s ease-in-out infinite alternate-reverse;
+}
+
+.bg-glow-3 {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  background: radial-gradient(circle, rgba(255, 206, 0, 0.05) 0%, transparent 60%);
+  filter: blur(80px);
+}
+
+@keyframes floatGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(50px, 30px) scale(1.1);
+  }
+}
+
+/* Presentation Container */
+.presentation-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(225, 26, 83, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(225, 26, 83, 0.1);
+}
+
+/* Slide Layouts */
+.slide-content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+/* Typography styles */
+h1.slide-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 30%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2.slide-subtitle {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: var(--text-white);
+  line-height: 1.2;
+}
+
+p.slide-paragraph {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* Gradient highlight text */
+.highlight-magenta {
+  background: linear-gradient(90deg, #ff407d, #ff809b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.highlight-yellow {
+  color: var(--zepto-yellow);
+  text-shadow: 0 0 15px rgba(255, 206, 0, 0.3);
+  font-weight: 700;
+}
+
+.highlight-gradient {
+  background: linear-gradient(135deg, var(--zepto-yellow), var(--zepto-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Slide Specific Styling */
+
+/* Slide 1 - Title */
+.title-badge {
+  background: rgba(225, 26, 83, 0.12);
+  border: 1px solid rgba(225, 26, 83, 0.3);
+  color: #ff688e;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+}
+
+.title-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.zepto-logo-text {
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--text-white);
+  margin: 0;
+  position: relative;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.zepto-logo-text span {
+  color: var(--zepto-magenta);
+}
+
+.zepto-logo-timer {
+  background: var(--zepto-yellow);
+  color: var(--bg-darker);
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 1.8rem;
+  margin-left: 10px;
+  transform: rotate(-5deg);
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(255, 206, 0, 0.4);
+}
+
+/* Slide 2 - Countdown Hook */
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.big-stopwatch {
+  font-size: 7rem;
+  font-weight: 800;
+  font-family: monospace, var(--font-sans);
+  color: var(--text-white);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  padding: 20px 50px;
+  border-radius: 30px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.big-stopwatch.active {
+  color: var(--zepto-yellow);
+  text-shadow: 0 0 40px rgba(255, 206, 0, 0.2);
+  border-color: rgba(255, 206, 0, 0.3);
+}
+
+.timer-button {
+  background: var(--zepto-magenta);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(225, 26, 83, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timer-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 26, 83, 0.5);
+}
+
+.timer-button.running {
+  background: #333;
+  box-shadow: none;
+}
+
+.milestone-container {
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.milestone-text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--zepto-yellow);
+}
+
+/* Slide 3 - Dropouts */
+.founders-grid {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 40px;
+}
+
+.founder-card {
+  flex: 1;
+  padding: 30px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--zepto-magenta);
+}
+
+.founder-card.vohra::before {
+  background: var(--zepto-yellow);
+}
+
+.founder-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: var(--text-white);
+}
+
+.founder-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--zepto-magenta);
+  margin-bottom: 20px;
+}
+
+.founder-card.vohra .founder-title {
+  color: var(--zepto-yellow);
+}
+
+.founder-desc {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Slide 4 - Operations Simulator */
+.operations-container {
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.simulation-track {
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.simulation-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+  position: relative;
+}
+
+.step-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #222;
+  border: 2px solid #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.step-node.active {
+  background: var(--zepto-magenta);
+  border-color: var(--zepto-magenta);
+  color: white;
+  box-shadow: 0 0 15px rgba(225, 26, 83, 0.5);
+}
+
+.step-node.completed {
+  background: var(--zepto-yellow);
+  border-color: var(--zepto-yellow);
+  color: var(--bg-darker);
+  box-shadow: 0 0 15px rgba(255, 206, 0, 0.5);
+}
+
+.step-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.step-label.active {
+  color: white;
+  font-weight: 600;
+}
+
+.track-line {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  height: 4px;
+  background: #333;
+  z-index: 1;
+}
+
+.track-progress-line {
+  position: absolute;
+  left: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--zepto-yellow), var(--zepto-magenta));
+  z-index: 2;
+  transition: width 0.4s ease;
+}
+
+.rider-avatar {
+  position: absolute;
+  top: 15px;
+  z-index: 10;
+  color: var(--zepto-yellow);
+  filter: drop-shadow(0 0 8px rgba(255, 206, 0, 0.6));
+  transition: left 0.4s ease;
+}
+
+.sim-details-card {
+  width: 100%;
+  padding: 25px;
+  text-align: left;
+}
+
+.sim-details-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--zepto-yellow);
+}
+
+.sim-details-desc {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Slide 5 - Marketing Comparison */
+.cart-comparison-grid {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 30px;
+}
+
+.cart-card {
+  flex: 1;
+  padding: 30px;
+  text-align: left;
+}
+
+.cart-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cart-card-icon {
+  color: var(--zepto-magenta);
+}
+
+.cart-card.traditional .cart-card-icon {
+  color: var(--text-muted);
+}
+
+.cart-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.cart-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 1.05rem;
+}
+
+.cart-item-name {
+  color: var(--text-white);
+}
+
+.cart-item-meta {
+  color: var(--text-muted);
+}
+
+.cart-card.zepto .cart-item-meta {
+  color: var(--zepto-yellow);
+}
+
+.cart-total-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Slide 6 - Conclusion */
+.conclusion-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+}
+
+.conclusion-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 25px;
+  text-align: left;
+}
+
+.conclusion-number {
+  background: var(--zepto-magenta);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.conclusion-row:nth-child(2) .conclusion-number {
+  background: var(--zepto-yellow);
+  color: var(--bg-darker);
+}
+
+.conclusion-row:nth-child(3) .conclusion-number {
+  background: white;
+  color: var(--bg-darker);
+}
+
+.conclusion-text {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--text-white);
+}
+
+.conclusion-text span {
+  color: var(--text-muted);
+  display: block;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* Navigation Controls / SlideController */
+.footer-controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 100;
+  background: rgba(9, 3, 16, 0.7);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--glass-border);
+}
+
+.progress-track {
+  flex-grow: 1;
+  max-width: 50%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  overflow: hidden;
+  margin: 0 40px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--zepto-yellow), var(--zepto-magenta));
+  border-radius: 100px;
+  transition: width 0.3s ease;
+}
+
+.slide-controls-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slide-counter-badge {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.keyboard-shortcut-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  h1.slide-title {
+    font-size: 2.5rem;
+  }
+  h2.slide-subtitle {
+    font-size: 1.6rem;
+  }
+  .zepto-logo-text {
+    font-size: 4rem;
+  }
+  .big-stopwatch {
+    font-size: 4rem;
+    padding: 10px 25px;
+  }
+  .founders-grid, .cart-comparison-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .progress-track {
+    display: none;
+  }
+  .slide-content-wrapper {
+    padding: 20px;
+  }
+}
